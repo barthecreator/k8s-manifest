@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: virtual-service
+  namespace: istio-system
+spec:
+  hosts:
+  - a726564a0267e4ad990cddf0602235ad-806555053.us-east-1.elb.amazonaws.com
+  gateways:
+  - bar-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /test
+    route:
+    - destination:
+        host: kube-stack-prometheus-kube-prometheus.prometheus.svc.cluster.local
+        port:
+          number: 9090
+
+
+        

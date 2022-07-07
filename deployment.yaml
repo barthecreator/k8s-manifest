@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: bargab/nginx-test:v5
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -c
+            - service controller-agent start
+          initialDelaySeconds: 300
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 30
+      hostAliases:
+      - ip: 10.98.5.125
+        hostnames:
+        - control.cyberark.com
+
+
+          
+
+
+
+
+

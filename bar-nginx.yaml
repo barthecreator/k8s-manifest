@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test
+  labels:
+    app: nginx
+spec:
+  restartPolicy: Never
+  hostAliases:
+    - ip: "10.98.5.125"
+      hostnames:
+      - "control.cyberark.com"
+  containers:
+  - name: nginx
+    image: bargab/nginx-test:v2
+    ports:
+    - containerPort: 80
+    command:
+      - cat
+    args:
+    - "/etc/hosts"

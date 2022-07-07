@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test
+spec:
+  hostAliases:
+  - ip: 10.98.5.125
+    hostnames:
+    - control.cyberark.com
+  containers:
+    - name: bar-nginx
+      image: bargab/nginx-test:v5
