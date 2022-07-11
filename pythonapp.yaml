@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python
+namespace: jenkins
+spec:
+  containers:
+  - name: python
+    image: python:latest
